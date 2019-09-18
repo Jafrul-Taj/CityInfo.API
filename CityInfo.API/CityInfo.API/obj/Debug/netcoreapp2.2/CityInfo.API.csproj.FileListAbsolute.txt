@@ -1,0 +1,14 @@
+H:\work\CityInfo.API\CityInfo.API\CityInfo.API\bin\Debug\netcoreapp2.2\CityInfo.API.deps.json
+H:\work\CityInfo.API\CityInfo.API\CityInfo.API\bin\Debug\netcoreapp2.2\CityInfo.API.runtimeconfig.json
+H:\work\CityInfo.API\CityInfo.API\CityInfo.API\bin\Debug\netcoreapp2.2\CityInfo.API.runtimeconfig.dev.json
+H:\work\CityInfo.API\CityInfo.API\CityInfo.API\bin\Debug\netcoreapp2.2\CityInfo.API.dll
+H:\work\CityInfo.API\CityInfo.API\CityInfo.API\bin\Debug\netcoreapp2.2\CityInfo.API.pdb
+H:\work\CityInfo.API\CityInfo.API\CityInfo.API\obj\Debug\netcoreapp2.2\CityInfo.API.csprojAssemblyReference.cache
+H:\work\CityInfo.API\CityInfo.API\CityInfo.API\obj\Debug\netcoreapp2.2\CityInfo.API.csproj.CoreCompileInputs.cache
+H:\work\CityInfo.API\CityInfo.API\CityInfo.API\obj\Debug\netcoreapp2.2\CityInfo.API.RazorAssemblyInfo.cache
+H:\work\CityInfo.API\CityInfo.API\CityInfo.API\obj\Debug\netcoreapp2.2\CityInfo.API.RazorAssemblyInfo.cs
+H:\work\CityInfo.API\CityInfo.API\CityInfo.API\obj\Debug\netcoreapp2.2\CityInfo.API.AssemblyInfoInputs.cache
+H:\work\CityInfo.API\CityInfo.API\CityInfo.API\obj\Debug\netcoreapp2.2\CityInfo.API.AssemblyInfo.cs
+H:\work\CityInfo.API\CityInfo.API\CityInfo.API\obj\Debug\netcoreapp2.2\CityInfo.API.RazorTargetAssemblyInfo.cache
+H:\work\CityInfo.API\CityInfo.API\CityInfo.API\obj\Debug\netcoreapp2.2\CityInfo.API.dll
+H:\work\CityInfo.API\CityInfo.API\CityInfo.API\obj\Debug\netcoreapp2.2\CityInfo.API.pdb
