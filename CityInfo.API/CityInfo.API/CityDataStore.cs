@@ -18,13 +18,45 @@ namespace CityInfo.API
                 {
                     Id=1,
                     Name="Dhaka",
-                    Description="The City of Mosque."
+                    Description="The City of Mosque.",
+                    PointOfInterests = new List<PointOfInterestDto>()
+                    {
+                        new PointOfInterestDto()
+                        {
+                            Id=1,
+                            Name = "Lal bag Kella",
+                            Description = "It has historic value"
+                        },
+                        new PointOfInterestDto()
+                        {
+                            Id=2,
+                            Name = "Carjon Hall",
+                            Description = "It is in the Dhaka University"
+                        },
+
+                    }
                 },
                 new CityDto()
                 {
                     Id=2,
                     Name="Dinajpur",
-                    Description="The City of peace."
+                    Description="The City of peace.",
+                    PointOfInterests = new List<PointOfInterestDto>()
+                    {
+                        new PointOfInterestDto()
+                        {
+                            Id=1,
+                            Name = "Ramshagor",
+                            Description = "It has historic value"
+                        },
+                        new PointOfInterestDto()
+                        {
+                            Id=2,
+                            Name = "Skukh Shagor",
+                            Description = "Is in a lovely place"
+                        },
+
+                    }
                 },
                 new CityDto()
                 {

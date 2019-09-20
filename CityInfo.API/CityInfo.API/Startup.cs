@@ -31,6 +31,7 @@ namespace CityInfo.API
             }
 
             app.UseMvc();
+            app.UseStatusCodePages();
              
             //app.Run((context) =>
             //{

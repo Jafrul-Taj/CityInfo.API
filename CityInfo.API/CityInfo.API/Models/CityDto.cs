@@ -13,6 +13,14 @@ namespace CityInfo.API.Models
 
         public string  Description { get; set; }
 
-        public int NumberOfPointsOfInterest { get; set; }
+        public int NumberOfPointsOfInterest { get
+            {
+                return PointOfInterests.Count;
+            }
+        }
+
+
+        public ICollection<PointOfInterestDto> PointOfInterests { get; set; }
+        = new List<PointOfInterestDto>();
     }
 }
