@@ -50,7 +50,16 @@ namespace CityInfo.API.Comtrollers
             {
                 return BadRequest();
             }
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            if(pointsOfInterest.Name== pointsOfInterest.Description)
+            {
+                //   ModelState.AddModelError("Description", "The provided description should be different from name");
+                return BadRequest("The provided description should be different from name");
 
+            }
             var city = CityDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
 
             if (city == null)
@@ -72,6 +81,45 @@ namespace CityInfo.API.Comtrollers
 
             return CreatedAtRoute("GetPointOfInterest",
                 new { cityId=cityId, id=finalPointOfInterest},finalPointOfInterest);
+
+        }
+
+        [HttpPut("{cityId}/pointsofinterest/{id}")]
+        public IActionResult UpdatePointOfInterest(int cityId, int id,
+            [FromBody] PointOfInterestForUpdateDto pointOfInterest)
+        {
+            if(pointOfInterest == null)
+            {
+                return BadRequest();
+            }
+
+            if(pointOfInterest.Description==pointOfInterest.Name)
+            {
+                return BadRequest("The provided description should be different from name");
+            }
+
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var city = CityDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
+
+            if (city == null)
+            {
+                return NotFound();
+            }
+
+            var pointOfInterestFromStore = city.PointOfInterests.FirstOrDefault(p => p.Id == id);
+
+            if(pointOfInterestFromStore==null)
+            {
+                return NotFound();
+            }
+            pointOfInterestFromStore.Name = pointOfInterest.Name;
+            pointOfInterestFromStore.Description = pointOfInterest.Description;
+
+            return NoContent();
 
         }
     }
