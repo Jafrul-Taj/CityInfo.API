@@ -8,12 +8,13 @@ namespace CityInfo.API.Services
 {
     public class CloudMailService : IMailService
     {
-        private string _mailTo = "admin@mycompany.com";
-        private string _mailForm = "admin@mycompany.com";
+
+        private string _mailTo = Startup.Configuration["mailSettings:mailToAddress"];
+        private string _mailFrom = Startup.Configuration["mailSettings:mailFromAddress"];
 
         public void Send(string sub, string message)
         {
-            Debug.WriteLine($"Mail from {_mailForm} to {_mailTo}, with CloudMailService.");
+            Debug.WriteLine($"Mail from {_mailFrom} to {_mailTo}, with CloudMailService.");
             Debug.WriteLine($"Subject: {sub}");
             Debug.WriteLine($"Message: {message}");
 

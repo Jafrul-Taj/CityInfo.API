@@ -8,12 +8,12 @@ namespace CityInfo.API.Services
 {
     public class LocalMailService : IMailService
     {
-        private string _mailTo = "admin@mycompany.com";
-        private string _mailForm = "admin@mycompany.com";
+        private string _mailTo = Startup.Configuration["mailSettings:mailToAddress"];
+        private string _mailFrom = Startup.Configuration["mailSettings:mailFromAddress"];
 
         public void Send(string sub, string message)
         {
-            Debug.WriteLine($"Mail from {_mailForm} to {_mailTo}, with LocalMailService.");
+            Debug.WriteLine($"Mail from {_mailFrom} to {_mailTo}, with LocalMailService.");
             Debug.WriteLine($"Subject: {sub}");
             Debug.WriteLine($"Message: {message}");
 
