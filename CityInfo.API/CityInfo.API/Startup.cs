@@ -12,6 +12,8 @@ using Microsoft.Extensions.Logging;
 using NLog.Extensions.Logging;
 using CityInfo.API.Services;
 using Microsoft.Extensions.Configuration;
+using CityInfo.API.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace CityInfo.API
 {
@@ -47,6 +49,10 @@ namespace CityInfo.API
             //         castedResolver.NamingStrategy = null;
             //     }
             // });
+            services.AddEntityFrameworkSqlServer();
+            services.AddDbContext<CityInfoContext>(option
+                => option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
 #if DEBUG
             services.AddTransient<IMailService,LocalMailService>();
 #else
@@ -55,7 +61,8 @@ namespace CityInfo.API
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env,ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env,ILoggerFactory loggerFactory,
+            CityInfoContext context)
         {
             loggerFactory.AddConsole();
 
@@ -75,7 +82,8 @@ namespace CityInfo.API
 
             app.UseMvc();
             app.UseStatusCodePages();
-             
+            context.EnsureSeedDataForContext();
+            
             //app.Run((context) =>
             //{
             //    throw new Exception("Example exception");
