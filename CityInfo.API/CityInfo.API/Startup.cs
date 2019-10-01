@@ -55,6 +55,7 @@ namespace CityInfo.API
 
             services.AddScoped<ICityInfoRepository,CItyInfoRepository>();
 
+
 #if DEBUG
             services.AddTransient<IMailService,LocalMailService>();
 #else
@@ -85,6 +86,13 @@ namespace CityInfo.API
             app.UseMvc();
             app.UseStatusCodePages();
             context.EnsureSeedDataForContext();
+            // AutoMapper.Mapper.ReferenceEquals(Entity.City,Models.CityWithoutPointsOfInterestDto);
+            AutoMapper.Mapper.Initialize(ctg =>
+            {
+                ctg.CreateMap<Entity.City, Models.CityWithoutPointsOfInterestDto>();
+                ctg.CreateMap<Entity.City, Models.CityDto>();
+                ctg.CreateMap<Entity.PointsOfInterest, Models.PointOfInterestDto>();
+            });
             
             //app.Run((context) =>
             //{
