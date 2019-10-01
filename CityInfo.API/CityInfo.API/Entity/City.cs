@@ -13,8 +13,7 @@ namespace CityInfo.API.Entity
         {
             PointsOfInterest = new List<PointsOfInterest>();
         }
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key,Required]
         public int Id { get; set; }
         [Required]
         [MaxLength(50)]

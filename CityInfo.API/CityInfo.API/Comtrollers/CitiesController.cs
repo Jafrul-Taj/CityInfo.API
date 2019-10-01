@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CityInfo.API.Services;
+using CityInfo.API.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,25 +13,85 @@ namespace CityInfo.API.Comtrollers
     //[ApiController]
     public class CitiesController : ControllerBase
     {
+        private readonly ICityInfoRepository _cityInfoRepository;
+
+        public CitiesController(ICityInfoRepository cityInfoRepository)
+        {
+            _cityInfoRepository = cityInfoRepository;
+        }
+
         [HttpGet()]
         public IActionResult GetCities()
         {
             //var temp = new JsonResult(CityDataStore.Current.Cities);
             //temp.StatusCode = 200;
-            return Ok(new JsonResult(CityDataStore.Current.Cities));
+            //  return Ok(new JsonResult(CityDataStore.Current.Cities));
+            var cityEntities = _cityInfoRepository.GetCities();
+            var results = new List<CityWithoutPointsOfInterestDto>();
 
+            foreach(var cityEntity in cityEntities)
+            {
+                results.Add(new CityWithoutPointsOfInterestDto
+                {
+                    Id = cityEntity.Id,
+                    Description = cityEntity.Description,
+                    Name = cityEntity.Name
+                });
+            }
+
+            return Ok(results);
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetCity(int id)
+        public IActionResult GetCity(int id, bool includePointsOfInterest=false)
         {
-            var cityToReturn = CityDataStore.Current.Cities.FirstOrDefault(c => c.Id == id);
-            if (cityToReturn == null)
+
+            var city = _cityInfoRepository.GetCity(id, includePointsOfInterest);
+            
+            if(city == null)
             {
                 return NotFound();
             }
-            return Ok(cityToReturn);
-                
+
+            if(includePointsOfInterest)
+            {
+                var cityResult = new CityDto()
+                {
+                    Id = city.Id,
+                    Name = city.Name,
+                    Description = city.Description
+                };
+
+                foreach(var poi in city.PointsOfInterest)
+                {
+                    cityResult.PointOfInterests.Add(
+                        new PointOfInterestDto()
+                        {
+                            Id = poi.Id,
+                            Name = poi.Name,
+                            Description = poi.Description
+                        }
+                        );
+                }
+
+                return Ok(cityResult);
+            }
+
+            var cityWithoutPointsOfInterestResult = new CityWithoutPointsOfInterestDto()
+            {
+                Id = city.Id,
+                Name = city.Name,
+                Description=city.Description
+            };
+
+            return Ok(cityWithoutPointsOfInterestResult);
+            //var cityToReturn = CityDataStore.Current.Cities.FirstOrDefault(c => c.Id == id);
+            //if (cityToReturn == null)
+            //{
+            //    return NotFound();
+            //}
+            //return Ok(cityToReturn);
+
         }
     }
 }

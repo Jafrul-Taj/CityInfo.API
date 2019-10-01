@@ -53,6 +53,8 @@ namespace CityInfo.API
             services.AddDbContext<CityInfoContext>(option
                 => option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddScoped<ICityInfoRepository,CItyInfoRepository>();
+
 #if DEBUG
             services.AddTransient<IMailService,LocalMailService>();
 #else
