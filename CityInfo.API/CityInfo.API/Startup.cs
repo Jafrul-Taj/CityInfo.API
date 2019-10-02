@@ -92,6 +92,9 @@ namespace CityInfo.API
                 ctg.CreateMap<Entity.City, Models.CityWithoutPointsOfInterestDto>();
                 ctg.CreateMap<Entity.City, Models.CityDto>();
                 ctg.CreateMap<Entity.PointsOfInterest, Models.PointOfInterestDto>();
+                ctg.CreateMap<Models.PointOfInterestForCreationDto, Entity.PointsOfInterest>();
+                ctg.CreateMap<Models.PointOfInterestForUpdateDto, Entity.PointsOfInterest>();
+                ctg.CreateMap<Entity.PointsOfInterest, Models.PointOfInterestForUpdateDto>();
             });
             
             //app.Run((context) =>

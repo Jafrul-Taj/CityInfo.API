@@ -24,7 +24,7 @@ namespace CityInfo.API.Services
             return _context.Cities.OrderBy(c => c.Name).ToList();
         }
 
-        public City GetCity(int cityId,bool includePointsOfInterest)
+        public City GetCity(int cityId, bool includePointsOfInterest)
         {
             if (includePointsOfInterest)
                 return _context.Cities.Include(c => c.PointsOfInterest)
@@ -41,6 +41,24 @@ namespace CityInfo.API.Services
         public IEnumerable<PointsOfInterest> GetPointsOfInterestForCity(int cityId)
         {
             return _context.PointsOfInterests.Where(p => p.CityId == cityId).ToList();
+        }
+
+        public void AddPointOfInterestForCity(int cityId, PointsOfInterest pointsOfInterest)
+        {
+            var city = GetCity(cityId, false);
+            city.PointsOfInterest.Add(pointsOfInterest);
+        }
+
+        public bool Save()
+        {
+            //return(_context.SaveChanges() =>0);
+
+            return (_context.SaveChanges() >= 0);
+        }
+
+        public void DeletePointOfInterest(PointsOfInterest pointsOfInterest)
+        {
+            _context.PointsOfInterests.Remove(pointsOfInterest);
         }
     }
 }
